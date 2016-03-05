@@ -1,6 +1,7 @@
 <?php
 namespace Consolidation\Log;
 
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\OutputStyle;
 
@@ -17,21 +18,29 @@ class LogOutputStyler extends UnstyledLogOutputStyler
     const TASK_STYLE_ERROR = 'fg=white;bg=red;options=bold';
 
     protected $defaultStyles = [
-        '*' => 'info',
+        '*' => LogLevel::INFO,
     ];
     protected $labelStyles = [
-        'error' => self::TASK_STYLE_ERROR,
-        'warning' => self::TASK_STYLE_WARNING,
-        'caution' => self::TASK_STYLE_WARNING,
-        'note' => self::TASK_STYLE_INFO,
-        'success' => self::TASK_STYLE_SUCCESS,
+        LogLevel::EMERGENCY => self::TASK_STYLE_ERROR,
+        LogLevel::ALERT => self::TASK_STYLE_ERROR,
+        LogLevel::CRITICAL => self::TASK_STYLE_ERROR,
+        LogLevel::ERROR => self::TASK_STYLE_ERROR,
+        LogLevel::WARNING => self::TASK_STYLE_WARNING,
+        LogLevel::NOTICE => self::TASK_STYLE_INFO,
+        LogLevel::INFO => self::TASK_STYLE_INFO,
+        LogLevel::DEBUG => self::TASK_STYLE_INFO,
+        ConsoleLogLevel::SUCCESS => self::TASK_STYLE_SUCCESS,
     ];
     protected $messageStyles = [
-        'error' => self::TASK_STYLE_ERROR,
-        'warning' => '',
-        'caution' => '',
-        'note' => '',
-        'success' => '',
+        LogLevel::EMERGENCY => self::TASK_STYLE_ERROR,
+        LogLevel::ALERT => self::TASK_STYLE_ERROR,
+        LogLevel::CRITICAL => self::TASK_STYLE_ERROR,
+        LogLevel::ERROR => self::TASK_STYLE_ERROR,
+        LogLevel::WARNING => '',
+        LogLevel::NOTICE => '',
+        LogLevel::INFO => '',
+        LogLevel::DEBUG => '',
+        ConsoleLogLevel::SUCCESS => '',
     ];
 
     public function __construct($labelStyles = [], $messageStyles = [])
