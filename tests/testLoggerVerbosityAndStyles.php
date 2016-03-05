@@ -12,17 +12,6 @@ class LoggerVerbosityAndStyleTests extends \PHPUnit_Framework_TestCase
   protected $output;
   protected $logger;
 
-  /**
-   * Use TEST_ALL_LOG_LEVELS to ensure that output is the same
-   * in instances where the output does not vary by log level.
-   */
-  const TEST_ALL_LOG_LEVELS = [
-    OutputInterface::VERBOSITY_DEBUG,
-    OutputInterface::VERBOSITY_VERY_VERBOSE,
-    OutputInterface::VERBOSITY_VERBOSE,
-    OutputInterface::VERBOSITY_NORMAL
-  ];
-
   function setup() {
     $this->output = new BufferedOutput();
     //$this->output->setVerbosity(OutputInterface::VERBOSITY_VERY_VERBOSE);
@@ -31,6 +20,17 @@ class LoggerVerbosityAndStyleTests extends \PHPUnit_Framework_TestCase
 
   public static function logTestValues()
   {
+    /**
+     * Use TEST_ALL_LOG_LEVELS to ensure that output is the same
+     * in instances where the output does not vary by log level.
+     */
+    $TEST_ALL_LOG_LEVELS = [
+      OutputInterface::VERBOSITY_DEBUG,
+      OutputInterface::VERBOSITY_VERY_VERBOSE,
+      OutputInterface::VERBOSITY_VERBOSE,
+      OutputInterface::VERBOSITY_NORMAL
+    ];
+
     // Tests that return the same value for multiple inputs
     // may use the expandProviderDataArrays method, and list
     // repeated scalars as array values.  All permutations of
@@ -39,14 +39,14 @@ class LoggerVerbosityAndStyleTests extends \PHPUnit_Framework_TestCase
     return TestDataPermuter::expandProviderDataArrays([
       [
         '\Consolidation\Log\UnstyledLogOutputStyler',
-        static::TEST_ALL_LOG_LEVELS,
+        $TEST_ALL_LOG_LEVELS,
         LogLevel::ERROR,
         'Do not enter - wrong way.',
         ' [error] Do not enter - wrong way.',
       ],
       [
         '\Consolidation\Log\UnstyledLogOutputStyler',
-        static::TEST_ALL_LOG_LEVELS,
+        $TEST_ALL_LOG_LEVELS,
         LogLevel::WARNING,
         'Steep grade.',
         ' [warning] Steep grade.',
@@ -96,7 +96,7 @@ class LoggerVerbosityAndStyleTests extends \PHPUnit_Framework_TestCase
       ],
       [
         '\Consolidation\Log\UnstyledLogOutputStyler',
-        static::TEST_ALL_LOG_LEVELS,
+        $TEST_ALL_LOG_LEVELS,
         ConsoleLogLevel::SUCCESS,
         'It worked!',
         ' [success] It worked!',
