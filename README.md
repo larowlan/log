@@ -12,7 +12,8 @@ Consolication\Log provides a Psr-3 compatible logger that provides styled log ou
 
 ## Usage
 ```
-$logger = new \Consolidation\Log\Logger();
+$logger = new \Consolidation\Log\Logger($output);
+$logger->setLogOutputStyler(new LogOutputStyler()); // optional
 $logger->warning('The file {name} does not exist.', ['name' => $filename]);
 ```
 n.b. Substitution of replacements, such as `{name}` in the example above, it not required by Psr-3' however, this is often done.
