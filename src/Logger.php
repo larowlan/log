@@ -116,7 +116,7 @@ class Logger extends AbstractLogger // extends ConsoleLogger
     protected function getOutputStreamWrapper()
     {
         if (!isset($this->outputStreamWrapper)) {
-            $this->outputStreamWrapper = $this->outputStyler->createOutputWrapper($this->getOutputStream());
+            $this->outputStreamWrapper = $this->getLogOutputStyler()->createOutputWrapper($this->getOutputStream());
         }
         return $this->outputStreamWrapper;
     }
@@ -124,7 +124,7 @@ class Logger extends AbstractLogger // extends ConsoleLogger
     protected function getErrorStreamWrapper()
     {
         if (!isset($this->errorStreamWrapper)) {
-            $this->errorStreamWrapper = $this->outputStyler->createOutputWrapper($this->getErrorStream());
+            $this->errorStreamWrapper = $this->getLogOutputStyler()->createOutputWrapper($this->getErrorStream());
         }
         return $this->errorStreamWrapper;
     }
@@ -164,7 +164,7 @@ class Logger extends AbstractLogger // extends ConsoleLogger
             if (array_key_exists($level, $this->formatFunctionMap)) {
                 $formatFunction = $this->formatFunctionMap[$level];
             }
-            $this->outputStyler->$formatFunction($outputStreamWrapper, $level, $this->interpolate($message, $this->outputStyler->style($context)), $context);
+            $this->getLogOutputStyler()->$formatFunction($outputStreamWrapper, $level, $this->interpolate($message, $this->getLogOutputStyler()->style($context)), $context);
         }
     }
 
