@@ -4,7 +4,7 @@ Improved Psr-3 / Psr\Log logger based on Symfony Console components.
 
 ## Component Status
 
-Proposed implementation for review
+In use in https://github.com/Codegyre/Robo
 
 ## Motivation
 
@@ -16,7 +16,7 @@ $logger = new \Consolidation\Log\Logger($output);
 $logger->setLogOutputStyler(new LogOutputStyler()); // optional
 $logger->warning('The file {name} does not exist.', ['name' => $filename]);
 ```
-n.b. Substitution of replacements, such as `{name}` in the example above, it not required by Psr-3' however, this is often done.
+n.b. Substitution of replacements, such as `{name}` in the example above, is not required by Psr-3' however, this is often done (e.g. in the Symfony Console logger).
 
 ## Comparison to Existing Solutions
 
@@ -28,7 +28,4 @@ Symfony Console provides the ConsoleLogger to fill this need; however, ConsoleLo
 
 Consolidation\Log provides the benefits of both classes, allowing for code that both behaved technically correctly (redirecting to stderr) without sacrificing on style.
 
-## Future
-
-- Log multiplexer: Log output to the console and also some other Psr-3 logger, such as Monolog.
-- SymfonyStyleAdapter: Attach a SymfonyStyle and a Consolidation\Log\Logger to a SymfonyStyleAdapter; the adapter can then be used wherever a SymfonyStyle would be used, with the logger being used whenever an appropriate log message is called.
+Monlog also provides a full-featured Console logger that might be applicable for some use cases.
