@@ -11,11 +11,14 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\StringInput;
 
 /**
- * Extend Symfony\Component\Console\Logger\ConsoleLogger
- * so that each of the different log level messages are
- * routed through the corresponding SymfonyStyle formatting
- * method.  Log messages are always sent to stderr if the
- * provided output object implements ConsoleOutputInterface.
+ * Replacement for Symfony\Component\Console\Logger\ConsoleLogger.
+ * Each of the different log level messages are routed through the
+ * corresponding SymfonyStyle formatting method.  Log messages are
+ * always sent to stderr if the provided output object implements
+ * ConsoleOutputInterface.
+ *
+ * Note that this class could extend ConsoleLogger if some methods
+ * of that class were declared 'protected' instead of 'private'.
  *
  * @author Greg Anderson <greg.1.anderson@greenknowe.org>
  */
@@ -59,8 +62,6 @@ class Logger extends AbstractLogger // extends ConsoleLogger
      */
     public function __construct(OutputInterface $output, array $verbosityLevelMap = array(), array $formatLevelMap = array(), array $formatFunctionMap = array())
     {
-        // parent::__construct($output, $verbosityLevelMap, $formatLevelMap);
-
         $this->output = $output;
 
         $this->verbosityLevelMap = $verbosityLevelMap + $this->verbosityLevelMap;
