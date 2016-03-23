@@ -130,6 +130,17 @@ class Logger extends AbstractLogger // extends ConsoleLogger
         return $this->errorStreamWrapper;
     }
 
+    protected function getOutputStreamForLogLevel($level)
+    {
+        // Write to the error output if necessary and available.
+        // Usually, loggers that log to a terminal should send
+        // all log messages to stderr.
+        if (array_key_exists($level, $this->formatLevelMap) && ($this->formatLevelMap[$level] !== self::ERROR)) {
+            return $this->getOutputStreamWrapper();
+        }
+        return $this->getErrorStreamWrapper();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -153,20 +164,33 @@ class Logger extends AbstractLogger // extends ConsoleLogger
         // Write to the error output if necessary and available.
         // Usually, loggers that log to a terminal should send
         // all log messages to stderr.
-        if (array_key_exists($level, $this->formatLevelMap) && ($this->formatLevelMap[$level] !== self::ERROR)) {
-            $outputStreamWrapper = $this->getOutputStreamWrapper();
-        } else {
-            $outputStreamWrapper = $this->getErrorStreamWrapper();
-        }
+        $outputStreamWrapper = $this->getOutputStreamForLogLevel($level);
 
         // Ignore messages that are not at the right verbosity level
         if ($this->getOutputStream()->getVerbosity() >= $this->verbosityLevelMap[$level]) {
-            $formatFunction = 'log';
-            if (array_key_exists($level, $this->formatFunctionMap)) {
-                $formatFunction = $this->formatFunctionMap[$level];
-            }
-            $this->getLogOutputStyler()->$formatFunction($outputStreamWrapper, $level, $this->interpolate($message, $this->getLogOutputStyler()->style($context)), $context);
+            $this->doLog($outputStreamWrapper, $level, $message, $context);
         }
+    }
+
+    /**
+     * Interpolate and style the message, and then send it to the log.
+     */
+    protected function doLog($outputStreamWrapper, $level, $message, $context)
+    {
+        $formatFunction = 'log';
+        if (array_key_exists($level, $this->formatFunctionMap)) {
+            $formatFunction = $this->formatFunctionMap[$level];
+        }
+        $interpolated = $this->interpolate(
+            $message,
+            $this->getLogOutputStyler()->style($context)
+        );
+        $this->getLogOutputStyler()->$formatFunction(
+            $outputStreamWrapper,
+            $level,
+            $interpolated,
+            $context
+        );
     }
 
     public function success($message, array $context = array())
