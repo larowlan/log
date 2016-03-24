@@ -6,7 +6,7 @@ Improved Psr-3 / Psr\Log logger based on Symfony Console components.
 
 ## Component Status
 
-In use in https://github.com/Codegyre/Robo
+In use in [Robo](https://github.com/Codegyre/Robo).
 
 ## Motivation
 
