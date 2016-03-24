@@ -2,7 +2,7 @@
 
 Improved Psr-3 / Psr\Log logger based on Symfony Console components.
 
-[![Circle CI](https://circleci.com/gh/consolidation-org/log.svg?style=svg)](https://circleci.com/gh/consolidation-org/log) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/consolidation-org/log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/consolidation-org/log/?branch=master) [![License](https://poser.pugx.org/consolidation/log/license)](https://packagist.org/packages/consolidation/log)
+[![Travis CI](https://travis-ci.org/consolidation-org/log.svg?branch=master)](https://travis-ci.org/consolidation-org/log) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/consolidation-org/log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/consolidation-org/log/?branch=master) [![License](https://poser.pugx.org/consolidation/log/license)](https://packagist.org/packages/consolidation/log)
 
 ## Component Status
 
