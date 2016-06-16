@@ -10,7 +10,7 @@ In use in [Robo](https://github.com/Codegyre/Robo).
 
 ## Motivation
 
-Consolication\Log provides a Psr-3 compatible logger that provides styled log output to the standard error (stderr) stream. By default, styling is provided by the SymfonyStyle class from the Symfony Console component; however, alternative stylers may be provided if desired.
+Consolidation\Log provides a Psr-3 compatible logger that provides styled log output to the standard error (stderr) stream. By default, styling is provided by the SymfonyStyle class from the Symfony Console component; however, alternative stylers may be provided if desired.
 
 ## Usage
 ```
