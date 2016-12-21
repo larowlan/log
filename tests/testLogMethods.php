@@ -51,4 +51,16 @@ class LogMethodTests extends \PHPUnit_Framework_TestCase
     $outputText = rtrim($this->output->fetch());
     $this->assertEquals(' [success] It worked!', $outputText);
   }
+
+  function testInterpolationBackwardsCompatiblityMode() {
+    $this->logger->error('The {noun} is missing.', ['noun' => 'airplane']);
+    $outputText = rtrim($this->output->fetch());
+    $this->assertEquals(' [error] The airplane is missing.', $outputText);
+  }
+
+  function testInterpolation() {
+    $this->logger->error('The %noun% is missing.', ['%noun%' => 'airplane']);
+    $outputText = rtrim($this->output->fetch());
+    $this->assertEquals(' [error] The airplane is missing.', $outputText);
+  }
 }

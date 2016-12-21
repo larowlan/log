@@ -256,14 +256,48 @@ class Logger extends AbstractLogger // extends ConsoleLogger
     private function interpolate($message, array $context)
     {
         // build a replacement array with braces around the context keys
-        $replace = array();
-        foreach ($context as $key => $val) {
-            if (!is_array($val) && (!is_object($val) || method_exists($val, '__toString'))) {
-                $replace[sprintf('{%s}', $key)] = $val;
-            }
-        }
+        $replace = static::interpolationReplacements($context);
 
         // interpolate replacement values into the message and return
         return strtr($message, $replace);
+    }
+
+    /**
+     * Build replacements array from the context variable.
+     *
+     * @param array $context
+     *
+     * @return array
+     */
+    private static function interpolationReplacements(array $context)
+    {
+        // build a replacement array with braces around the context keys
+        $replace = array();
+        foreach ($context as $key => $val) {
+            // For compatibility with Symfony Translation, encourage
+            // context values to be '%name%'' & similar. Also support
+            // simple keys (e.g. 'name'), which are converted to '{name}'
+            // per Symfony\Component\Console\Logger\ConsoleLogger.
+            if (!is_array($val) && (!is_object($val) || method_exists($val, '__toString'))) {
+                $replace[static::interpolationKey($key)] = $val;
+            }
+        }
+        return $replace;
+    }
+
+    /**
+     * Determine the appropriate value to use for the interpolation key.
+     * If the provided key begins and ends with alphanumeric characters,
+     * then wrap it in {}s. Otherwise, use it as-is.
+     *
+     * @param string $key
+     * @return string
+     */
+    private static function interpolationKey($key)
+    {
+        if (ctype_alnum($key[0]) && ctype_alnum(substr($key, -1))) {
+            return '{' . $key . '}';
+        }
+        return $key;
     }
 }
