@@ -1,13 +1,14 @@
 <?php
 namespace Consolidation\Log;
 
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Consolidation\TestUtils\TestDataPermuter;
 
-class LoggerVerbosityAndStyleTests extends \PHPUnit_Framework_TestCase
+class LoggerVerbosityAndStyleTests extends TestCase
 {
   protected $output;
   protected $logger;
