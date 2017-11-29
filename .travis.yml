@@ -30,10 +30,15 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer config --unset platform.php
-  - 'composer config minimum-stability ${STABILITY-stable}'
+  - |
+    if [ -n "$HIGHEST_LOWEST" ] ; then
+      rm composer.lock
+      composer config --unset platform.php
+      composer config minimum-stability ${STABILITY-stable}
+    fi
   - 'composer -n ${HIGHEST_LOWEST-install} --prefer-dist'
   - composer why symfony/console
+  - composer licenses
 
 script:
   - vendor/bin/phpcs --standard=PSR2 -n src
