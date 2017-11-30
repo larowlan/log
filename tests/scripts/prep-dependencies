@@ -1,19 +1,29 @@
 #!/bin/bash
 
+#
+# This script is called automatically on every `composer update`.
+# See "post-update-cmd" in the "scripts" section of composer.json.
+#
+# This script will create a derived composer.json / composer.lock
+# pair for every test scenario.  Test scenarios are defined in the
+# "scenarios" file, which should be customized to suit the needs
+# of the project.
+#
+
+SELF_DIRNAME="`dirname -- "$0"`"
+source ${SELF_DIRNAME}/scenarios
+
+echo
+echo "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo "::"
+echo ":: Update dependencies for the following scenarios:"
+echo "::"
+echo "::    ${SCENARIOS}"
+echo "::"
+echo "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo
+
 set -ex
-
-SCENARIOS="symfony2 symfony3 symfony4 dev4"
-AUTOLOAD_DIRECTORIES='src tests'
-
-stability_dev4='dev'
-
-platform_php_symfony2='5.5'
-platform_php_symfony3='5.6'
-
-requirement_symfony2='symfony/console:^2.8'
-requirement_symfony3='symfony/console:^3'
-requirement_symfony4='symfony/console:^4'
-requirement_dev4='symfony/console:^4'
 
 for SCENARIO in ${SCENARIOS} ; do
 

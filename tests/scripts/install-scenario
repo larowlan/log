@@ -20,4 +20,4 @@ echo "Switch to ${SCENARIO} scenario"
 set -ex
 
 composer -n --working-dir=$dir ${ACTION} --prefer-dist --no-scripts
-composer -n --working-dir=$dir licenses
+composer -n --working-dir=$dir info
