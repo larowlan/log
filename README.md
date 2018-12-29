@@ -10,7 +10,7 @@ In use in [Robo](https://github.com/Codegyre/Robo).
 
 ## Motivation
 
-Consolidation\Log provides a Psr-3 compatible logger that provides styled log output to the standard error (stderr) stream. By default, styling is provided by the SymfonyStyle class from the Symfony Console component; however, alternative stylers may be provided if desired.
+Consolidation\Log provides a PSR-3 compatible logger that provides styled log output to the standard error (stderr) stream. By default, styling is provided by the SymfonyStyle class from the Symfony Console component; however, alternative stylers may be provided if desired.
 
 ## Usage
 ```
@@ -18,9 +18,16 @@ $logger = new \Consolidation\Log\Logger($output);
 $logger->setLogOutputStyler(new LogOutputStyler()); // optional
 $logger->warning('The file {name} does not exist.', ['name' => $filename]);
 ```
-String interpolation -- that is, the substitution of replacements, such as `{name}` in the example above, is not required by Psr-3, and is not implemented by default in the Psr\Log project. However, it is recommended by PRS-3, and is often done, e.g. in the Symfony Console logger.
+String interpolation -- that is, the substitution of replacements, such as `{name}` in the example above, is not required by PSR-3, and is not implemented by default in the Psr\Log project. However, it is recommended by PRS-3, and is often done, e.g. in the Symfony Console logger.
 
 Consolidation\Log supports string interpolation.
+
+A logger manager can be used to delegate all log messages to one or more loggers.
+```
+$logger = new \Consolidation\Log\LoggerManager();
+$logger->add('default', new \Consolidation\Log\Logger($output));
+```
+This is useful if, for example, you need to inject a logger into application objects early (e.g. into a dependency injection container), but the output object to log to will not be available until later.
 
 ## Comparison to Existing Solutions
 
