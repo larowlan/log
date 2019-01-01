@@ -15,12 +15,16 @@ use Psr\Log\LogLevel;
  *
  * @author Greg Anderson <greg.1.anderson@greenknowe.org>
  */
-class LoggerManager extends AbstractLogger
+class LoggerManager extends AbstractLogger implements StylableLoggerInterface
 {
     /** @var LoggerInterface[] */
     protected $loggers = [];
     /** @var LoggerInterface */
     protected $fallbackLogger = null;
+    /** @var LogOutputStylerInterface */
+    protected $outputStyler;
+    /** @var array */
+    protected $formatFunctionMap = [];
 
     /**
      * reset removes all loggers from the manager.
@@ -32,6 +36,17 @@ class LoggerManager extends AbstractLogger
     }
 
     /**
+     * setLogOutputStyler will remember a style that
+     * should be applied to every stylable logger
+     * added to this manager.
+     */
+    public function setLogOutputStyler(LogOutputStylerInterface $outputStyler, array $formatFunctionMap = array())
+    {
+        $this->outputStyler = $outputStyler;
+        $this->formatFunctionMap = $this->formatFunctionMap;
+    }
+
+    /**
      * add adds a named logger to the manager,
      * replacing any logger of the same name.
      *
@@ -40,6 +55,13 @@ class LoggerManager extends AbstractLogger
      */
     public function add($name, LoggerInterface $logger)
     {
+        // If this manager has been given a log style,
+        // and the logger being added accepts a log
+        // style, then copy our style to the logger
+        // being added.
+        if ($this->outputStyler && $logger instanceof StylableLoggerInterface) {
+            $logger->setLogOutputStyler($this->outputStyler, $this->formatFunctionMap);
+        }
         $this->loggers[$name] = $logger;
         return $this;
     }
