@@ -1,5 +1,9 @@
 # Change Log
 
+### 1.1.1: 2019-1-1
+
+- Allow logger manager to manage a global style for loggers (#12)
+
 ### 1.1.0: 2018-12-29
 
 - Add a logger manager (#11)
