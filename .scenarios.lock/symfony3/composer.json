@@ -19,13 +19,14 @@
         }
     },
     "require": {
+        "symfony/console": "^3.0",
         "php": ">=5.4.5",
-        "psr/log": "^1.0",
-        "symfony/console": "^2.8|^3|^4|^5"
+        "psr/log": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8.36",
+        "phpunit/phpunit": "^6",
         "g1a/composer-test-scenarios": "^3",
+        "php-coveralls/php-coveralls": "^1",
         "squizlabs/php_codesniffer": "^2"
     },
     "minimum-stability": "stable",
@@ -50,7 +51,7 @@
     },
     "config": {
         "platform": {
-            "php": "5.4.8"
+            "php": "7.0.8"
         },
         "optimize-autoloader": true,
         "sort-packages": true,
