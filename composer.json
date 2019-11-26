@@ -55,8 +55,10 @@
                 "require": {
                     "symfony/console": "^3.0"
                 },
-                "platform": {
-                    "php": "7.0.8"
+                "config": {
+                    "platform": {
+                        "php": "7.0.8"
+                    }
                 }
             },
             "symfony2": {
