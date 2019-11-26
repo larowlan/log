@@ -54,6 +54,9 @@
             "symfony3": {
                 "require": {
                     "symfony/console": "^3.0"
+                },
+                "platform": {
+                    "php": "7.0.8"
                 }
             },
             "symfony2": {
@@ -94,7 +97,7 @@
         "optimize-autoloader": true,
         "sort-packages": true,
         "platform": {
-            "php": "7.0.8"
+            "php": "7.1.3"
         }
     }
 }
