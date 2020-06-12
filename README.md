@@ -2,7 +2,7 @@
 
 Improved [PSR-3](http://www.php-fig.org/psr/psr-3/) [Psr\Log](https://github.com/php-fig/log) logger based on Symfony Console components.
 
-[![Travis CI](https://travis-ci.org/consolidation/log.svg?branch=master)](https://travis-ci.org/consolidation/log) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/consolidation/log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/consolidation/log/?branch=master) [![Coverage Status](https://coveralls.io/repos/github/consolidation/log/badge.svg?branch=master)](https://coveralls.io/github/consolidation/log?branch=master) [![License](https://poser.pugx.org/consolidation/log/license)](https://packagist.org/packages/consolidation/log)
+[![Travis CI](https://travis-ci.org/consolidation/log.svg?branch=main)](https://travis-ci.org/consolidation/log) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/consolidation/log/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/consolidation/log/?branch=main) [![Coverage Status](https://coveralls.io/repos/github/consolidation/log/badge.svg?branch=main)](https://coveralls.io/github/consolidation/log?branch=main) [![License](https://poser.pugx.org/consolidation/log/license)](https://packagist.org/packages/consolidation/log)
 
 ## Component Status
 
