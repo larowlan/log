@@ -160,6 +160,8 @@ class LoggerVerbosityAndStyleTests extends TestCase
     $this->output->setVerbosity($verbocity);
     $this->logger->log($level, $message);
     $outputText = rtrim($this->output->fetch(), "\n\r\t ");
+    $outputText = preg_replace('#\r\n#ms', "\n", $outputText);
+    $expected = preg_replace('#\r\n#ms', "\n", $expected);
     $this->assertEquals($expected, $outputText);
   }
 }
