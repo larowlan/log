@@ -1,5 +1,9 @@
 # Change Log
 
+### 2.0.2: 2020-12-10:
+
+- PHP 8
+
 ### 2.0.1: 2020-5-27:
 
 - Use symfony5 in tests. Fix erroneous branch alias and minimum php versions in composer.json. (#16)
