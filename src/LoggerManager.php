@@ -61,7 +61,7 @@ class LoggerManager extends AbstractLogger implements StylableLoggerInterface, S
      * setOutputStream will remember an output stream that should be
      * applied to every logger added to this manager.
      */
-    public function setOutputStream(OutputInterface $output)
+    public function setOutputStream($output)
     {
         $this->outputStream = $output;
         foreach ($this->getLoggers() as $logger) {
@@ -75,7 +75,7 @@ class LoggerManager extends AbstractLogger implements StylableLoggerInterface, S
      * setErrorStream will remember an error stream that should be
      * applied to every logger added to this manager.
      */
-    public function setErrorStream(OutputInterface $error)
+    public function setErrorStream($error)
     {
         $this->errorStream = $error;
         foreach ($this->getLoggers() as $logger) {

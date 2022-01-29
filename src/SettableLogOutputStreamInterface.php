@@ -11,6 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 interface SettableLogOutputStreamInterface
 {
-    public function setOutputStream(OutputInterface $output);
-    public function setErrorStream(OutputInterface $error);
+    /**
+     * @param OutputInterface $output
+     */
+    public function setOutputStream($output);
+
+    /**
+     * @param OutputInterface $error
+     */
+    public function setErrorStream($error);
 }
