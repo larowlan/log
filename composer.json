@@ -95,6 +95,9 @@
         "sort-packages": true,
         "platform": {
             "php": "7.0.8"
+        },
+        "allow-plugins": {
+            "g1a/composer-test-scenarios": true
         }
     }
 }
