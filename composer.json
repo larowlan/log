@@ -44,9 +44,6 @@
         ]
     },
     "extra": {
-        "branch-alias": {
-            "dev-main": "2.x-dev"
-        },
         "platform": {
             "php": "8.1.14"
         }
